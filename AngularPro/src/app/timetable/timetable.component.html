@@ -1,0 +1,102 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Form</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.0/js/solid.min.js" integrity="sha512-8lu2ZjeEHXD+qkS1UF5wsYQ08dg8yj6dqin/qFeDpeqMebKoLMj9zV92hdooBAYgG4DYhHv5miJ8f/t7NbPHsA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/solid.min.css" integrity="sha512-6/gTF62BJ06BajySRzTm7i8N2ZZ6StspU9uVWDdoBiuuNu5rs1a8VwiJ7skCz2BcvhpipLKfFerXkuzs+npeKA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+   
+</head>
+<body>
+    <div class="container">
+        <h2>Time-Table </h2>
+        <div class="form-container">
+            <form>
+                <div *ngIf="success == true;then SUCC else FAIL"></div>
+                <ng-template #FAIL><p style="color:red;text-align:center;font-size:x-large;text-shadow:1px 0.6px rgb(255, 0, 0)"> {{ message }} </p></ng-template>
+                <ng-template #SUCC><p style="color:rgb(65, 246, 65);text-align: center;text-shadow:1px 0.6px rgb(46, 243, 20)"> {{ message }} </p></ng-template>
+            <input type="hidden" name="id" value="{{ form.id }}">
+            <div class="input-name">
+                <label for="subject_ID">Exam Time<span style="color: red;margin-left:2px">*</span></label>
+                <i class="fa-duotone fa-clock icon" style="position:absolute; font-size: 20px;border-right: 1px solid rgb(228, 153, 14); margin:34px -75px ; padding-right:4px"></i>
+                <select class="role" [(ngModel)]="form.examTime" name="examTime" style="text-align: center;">
+                    <!-- <option value="" hidden>---- Select Exam Time ----</option> -->
+                    <option >7:00 AM to 10:00 AM</option>
+                    <option >11:00 AM to 2:00 PM</option>
+                    <option >3:00 PM to 6:00 PM</option>
+                    </select>
+                <span style="color:red;margin-left:1px">{{ inputError.examTime }}</span>
+
+            </div>
+            <div class="input-name" style="margin-bottom: -2px;margin-top:0px">
+                <label for="subject_ID">Exam Date<span style="color: red;margin-left:2px">*</span></label>
+                <i class="fa fa-calendar icon" style="position:absolute; font-size: 20px;border-right: 1px solid rgb(228, 153, 14); margin:34px -75px ; padding-right:4px"></i>
+                <input type="date" [(ngModel)]="form.examDate" placeholder="dd-mm-yyyy" name="examDate"  class="text-name" style="text-align: center;">
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <span style="color: red;margin-left:30px;margin-top:1px">{{ inputError.examDate }}</span>
+    
+                </div>
+            </div>
+            <div class="input-name" style="margin-bottom: 0px;margin-top: 0px">
+                <label for="course_ID">Course Name<span style="color: red;margin-left:2px">*</span></label>
+                <i class="fa fa-us icon" style="position:absolute; font-size: 20px;border-right: 1px solid rgb(228, 153, 14); margin:34px -75px ; padding-right:4px"></i>
+                <select [(ngModel)]="form.course_ID" class="role" name="course_ID" style="text-align: center;">
+                    <!-- <option value="">Select a Role Name</option> -->
+                    <option *ngFor="let r of preloadCou" value="{{r.id}}">{{ r.courseName }}</option>
+                    
+                </select>
+                <span style="color:red;margin-left:5px">{{ inputError.course_ID }}</span>
+
+            </div>
+            <div class="input-name" >
+                <label for="subject_ID">Subject Name<span style="color: red;margin-left:2px">*</span></label>
+                <i class="fa fa-book icon" style="position:absolute; font-size: 20px;border-right: 1px solid rgb(228, 153, 14); margin:32px -100px ; padding-right:5px"></i>
+                <select [(ngModel)]="form.subject_ID" class="role" name="subject_ID" style="text-align: center;">
+                    <!-- <option value="">Select a Role Name</option> -->
+                    <option *ngFor="let r of preloadSub" value="{{r.id}}">{{ r.subjectName }}</option>
+                    
+                </select>
+                <span style="color:red;margin-left:5px">{{ inputError.subject_ID }}</span>
+
+            </div>
+            <div class="input-name">
+                <label for="subject_ID">Semester<span style="color: red;margin-left:2px">*</span></label>
+                <i class="fa icon" style="position:absolute; font-size: 24px;border-right: 1px solid rgb(228, 153, 14); margin:8px 6px ; padding-right:4px"></i>
+                <select class="role" [(ngModel)]="form.semester" name="semester" style="text-align: center;">
+                    <!-- <option value="" hidden>---- Select Exam Time ----</option> -->
+                    <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                    </select>
+                <span style="color:red;margin-left:1px">{{ inputError.semester }}</span>
+
+            </div>
+            <div class="input-button">
+                <div class="row">
+                    <button type="submit" (click)="save()" class="button" style="margin-left:125px ;">Save</button>
+                    <!-- <span style="margin-right: 20px;">  <a href="" class="button-1" style="text-align:center">reset</a></span> -->
+                    <button (click)="reset()" type="reset" class="button-1" style="text-align:center">reset</button>
+               </div>
+            </div>
+            </form>
+            
+
+           
+        </div>
+
+    </div>
+    
+</body>
+
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.0/js/solid.min.js" integrity="sha512-8lu2ZjeEHXD+qkS1UF5wsYQ08dg8yj6dqin/qFeDpeqMebKoLMj9zV92hdooBAYgG4DYhHv5miJ8f/t7NbPHsA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/solid.min.css" integrity="sha512-6/gTF62BJ06BajySRzTm7i8N2ZZ6StspU9uVWDdoBiuuNu5rs1a8VwiJ7skCz2BcvhpipLKfFerXkuzs+npeKA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+</head>
+
+<body>
+    <div class="container">
+        <h2>Student</h2>
+        <div class="form-container">
+            <form>
+            <div *ngIf = "success == true; then SUCC else FAIL"></div>
+                <ng-template #FAIL><p style="color:red;text-align:center;font-size:x-large;text-shadow:1px 0.6px rgb(255, 0, 0)"> {{ message }} </p></ng-template>
+                <ng-template #SUCC><p style="color:rgb(38, 240, 38);text-align: center;font-size:x-large;text-shadow:1px 0.6px rgb(24, 238, 13)"> {{ message }} </p></ng-template>
+            
+            <div class="input-name" style="margin-bottom: 3px;margin-top:5px">
+                <i class="fas fa-user icon" style="position:absolute; font-size: 19px;border-right: 1px solid rgb(228, 153, 14); margin:8px 6px ; padding-right:8px"></i>
+                <input  [(ngModel)]="form.firstName" placeholder="Enter First Name" name="firstName"  class="name">
+                <span>
+                <i class="fas fa-user icon" style="position:absolute; font-size: 19px;border-right: 1px solid rgb(228, 153, 14); margin:8px 6px ; padding-right:8px"></i>
+                <input  [(ngModel)]="form.lastName" placeholder="Enter Last Name" name="lastName"  class="name">
+                </span>
+
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <span style="color: red;margin-left:20px;display:inline-block">{{ inputError.firstName }}</span>
+                    
+                </div>
+                <div class="col-lg-6">
+                    <span style="color: red;margin-left:12px">{{ inputError.lastName }}</span>
+    
+                </div>
+            </div>
+            <div class="input-name" style="margin-bottom: 1px;margin-top:5px" >
+                <i class="fas fa-envelope icon" style="position:absolute; font-size: 19px;border-right: 1px solid rgb(228, 153, 14); margin:8px 6px ; padding-right:8px"></i>
+                <input type="email" [(ngModel)]="form.email" placeholder="Enter your Email" name="email"  class="text-name">
+            </div>
+            <div class="input-name" >
+                <div class="col-lg-6">
+                <span style="color: red;margin-left:3px;margin-bottom:2px">{{ inputError.email }}</span>
+                </div>
+            </div>
+
+            <div class="input-name" style="margin-bottom: 1px;margin-top:-2px">
+                <i class="fa fa-calendar icon" style="position:absolute; font-size: 24px;border-right: 1px solid rgb(228, 153, 14); margin:8px 6px ; padding-right:4px"></i>
+                <input type="date" [(ngModel)]="form.dob" placeholder="dd-mm-yyyy" name="dob"  class="text-name">
+            </div>
+            <div class="row">
+                
+                <div class="col-lg-6">
+                    <span style="color: red;margin-left:30px;margin-top:1px">{{ inputError.dob }}</span>
+    
+                </div>
+            </div>
+            <div class="input-name" style="margin-bottom: 3px;margin-top:2px" >
+                <i class="fas fa-mobile icon" style="position:absolute; font-size: 19px;border-right: 1px solid rgb(228, 153, 14); margin:8px 6px ; padding-right:8px"></i>
+                <input type="text" [(ngModel)]="form.mobileNumber" placeholder="Enter your Mobile Number" name="mobileNumber"  class="text-name">
+            </div>
+           
+            <div class="col-lg-6">
+                <span style="color: red;margin-left:26px">{{ inputError.mobileNumber }}</span>
+    
+            </div>
+     
+            <div class="input-name" style="margin-bottom: 19px;margin-top: 1px">
+                <label for="role_Id">Role Name<span style="color: red;margin-left:2px">*</span></label>
+                <select [(ngModel)]="form.college_ID" class="role" name="college_ID">
+                    <!-- <option value="">Select a Role Name</option> -->
+                    <option *ngFor="let r of preloadData" value="{{r.id}}">{{ r.collegeName }}</option>
+                    
+                </select>
+                <span style="color:red;margin-left:5px">{{ inputError.college_ID }}</span>
+
+            </div>
+            <div class="input-button">
+                <div class="row">
+               <button (click)="save()" type="submit" class="button"  style="margin-left:125px ;">Save</button>
+               <!-- <span style="margin-right: 20px;">  <a href="" class="button-1" style="text-align:center">reset</a></span> -->
+               <button (click)="reset()" type="reset" class="button-1" style="text-align:center">reset</button>
+               </div>
+            </div>
+            </form>
+            
+
+           
+        </div>
+
+    </div>
+
+  
+</body>
+</html>
+
+

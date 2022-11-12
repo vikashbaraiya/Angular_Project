@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    a{
+            
+        place-items: center;
+        display: table-cell;
+        padding-top: 6px;
+      
+    }
+</style>
+
+
+<body>
+    <div class="container">
+        <h2>User Registration</h2>
+        <div class="form-container">
+            <form>
+            <div *ngIf = "success == true; then SUCC else FAIL"></div>
+                <ng-template #FAIL><p style="color:red;text-align:center;font-size:x-large;text-shadow:1px 0.6px rgb(255, 0, 0)"> {{ message }} </p></ng-template>
+                <ng-template #SUCC><p style="color:rgb(38, 240, 38);text-align: center;text-shadow:1px 0.6px rgb(24, 238, 13)"> {{ message }} </p></ng-template>
+            
+            <div class="input-name" style="margin-bottom: 3px;margin-top:5px">
+                <i class="fa fa-user icon" style="position:absolute; font-size: 24px;border-right: 1px solid rgb(228, 153, 14); margin:8px 6px ; padding-right:4px"></i>
+                <input  [(ngModel)]="form.firstName" placeholder="Enter First Name" name="firstName"  class="name">
+                <span>
+                <i class="fa fa-user icon" style="position:absolute; font-size: 24px;border-right: 1px solid rgb(228, 153, 14); margin:8px 6px ; padding-right:4px"></i>
+                <input  [(ngModel)]="form.lastName" placeholder="Enter Last Name" name="lastName"  class="name">
+                </span>
+
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <span style="color: red;margin-left:20px;display:inline-block">{{ inputError.firstName }}</span>
+                    
+                </div>
+                <div class="col-lg-6">
+                    <span style="color: red;">{{ inputError.lastName }}</span>
+    
+                </div>
+            </div>
+            <div class="input-name" style="margin-bottom: 3px;margin-top:5px" >
+                <i class="fa fa-envelope icon" style="position:absolute; font-size: 24px;border-right: 1px solid rgb(228, 153, 14); margin:8px 6px ; padding-right:4px"></i>
+                <input type="email" [(ngModel)]="form.login_id" placeholder="Enter your Email" name="login_id"  class="text-name">
+            </div>
+            <div class="input-name" >
+                <span style="color: red;margin-left:3px;">{{ inputError.login_id }}</span>
+            </div>
+
+            <div class="input-name" style="margin-bottom: 3px;margin-top:-25px">
+                <i class="fa fa-lock icon" style="position:absolute; font-size: 24px;border-right: 1px solid rgb(228, 153, 14); margin:8px 6px ; padding-right:7px;"></i>
+                <input type="password" [(ngModel)]="form.password" placeholder="Enter Your Password" name="password"  class="name1">
+                <span>
+                <i class="fa fa-lock icon" style="position:absolute; font-size: 24px;border-right: 1px solid rgb(228, 153, 14); margin:8px 6px ; padding-right:4px"></i>
+                <input type="text" [(ngModel)]="form.confirmpassword" placeholder="Confirm password" name="confirmpassword"  class="name1">
+                </span>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <span style="color: red;margin-left:27px;">{{ inputError.password }}</span>
+                    
+                </div>
+                <div class="col-lg-6">
+                    <span style="color: red;">{{ inputError.confirmpassword }}</span>
+    
+                </div>
+            </div>
+            
+            <div class="input-name" style="margin-bottom: 3px;margin-top:5px">
+                <input selected type="radio" [(ngModel)]="form.gender"  name="gender" value="Male" class="radio-button"  checked>
+                <label style="margin-right:15px;">Male</label>
+
+                <input type="radio" [(ngModel)]="form.gender"  name="gender" value="Female" class="radio-button">
+                <label style="margin-right: 42px;">Female</label>
+
+                <span>
+                    <i class="fa fa-calendar icon" style="position:absolute; font-size: 24px;border-right: 1px solid rgb(228, 153, 14); margin:8px 6px ; padding-right:4px"></i>
+                <input type="date" [(ngModel)]="form.dob" placeholder="dd-mm-yyyy" name="dob"  class="name">
+                </span>
+
+
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <span style="color: red;margin-left:27px;">{{ inputError.gender }}</span>
+                    
+                </div>
+                <div class="col-lg-6">
+                    <span style="color: red;">{{ inputError.dob }}</span>
+    
+                </div>
+            </div>
+            <div class="input-name" style="margin-bottom: 3px;margin-top:5px">
+                <i class="fa fa-address-book icon" style="position:absolute; font-size: 24px;border-right: 1px solid rgb(228, 153, 14); margin:8px 6px ; padding-right:4px"></i>
+                <input type="text" [(ngModel)]="form.address" placeholder="Enter Your Address" name="address"  class="name">
+                <span>
+                    <i class="fa fa-mobile icon" style="position:absolute; font-size: 24px;border-right: 1px solid rgb(228, 153, 14); margin:8px 6px ; padding-right:4px"></i>
+                <input type="text" [(ngModel)]="form.mobilenumber" placeholder="Enter Mobile No." name="mobilenumber"  class="name">
+                </span>
+
+            </div>
+            <div class="row" style="margin-top: 1px; margin-bottom:1px">
+                <div class="col-lg-6" >
+                    <span style="color: red;margin-left:27px;">{{ inputError.address }}</span>
+                    
+                </div>
+                <div class="col-lg-6">
+                    <span style="color: red;">{{ inputError.mobilenumber }}</span>
+    
+                </div>
+            </div>
+            <div class="input-button">
+                <div class="row">
+               <button (click)="save()" type="submit" class="button"  style="margin-left:125px ;">Save</button>
+               <!-- <span style="margin-right: 20px;">  <a href="" class="button-1" style="text-align:center">reset</a></span> -->
+               <button (click)="reset()" type="reset" class="button-1" style="text-align:center">reset</button>
+               </div>
+            </div>
+            </form>
+            
+
+           
+        </div>
+
+    </div>
+
+  
+</body>
+</html>
+

@@ -1,0 +1,47 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+    
+    <title>Login Form</title>
+
+  
+
+  </head>
+  <br>
+
+  <body>
+    <div class="center">
+      <h1>Login</h1>
+      <div *ngIf = "success == true; then SUCC else FAIL"></div>
+            <ng-template #FAIL><p style="color: red;text-align: center;"> {{form.message }}</p></ng-template>
+            <ng-template #SUCC><p style="color:rgb(33, 216, 33) ;text-align: center; text-shadow:2px 1px rgb(48, 238, 44);font-size:large"> {{ form.message }}</p></ng-template>
+      <form >
+        <div class="txt_field">
+          <input type="text" required [(ngModel)] = "form.login_id" name="login_id">
+          <span></span>
+          <label>Email</label>
+          <span style="color:red">{{ inputError.login_id }}</span>
+        </div>
+        <div class="txt_field">
+          <input type="password" required [(ngModel)] = "form.password" name="password">
+          <span></span>
+          <label>Password</label>
+          <span style="color:red">{{ inputError.password }}</span>
+        </div>
+        <div  class="pass"><a [routerLink]="['/forgetpassword']">Forgot Password?</a></div>
+        <input type="submit" (click)="signIn()">
+        <div class="signup_link">
+          Not a member? <a [routerLink]="['/registration']">Signup</a>
+        </div>
+      </form>
+    </div>
+  
+      
+
+</body>
+</html>

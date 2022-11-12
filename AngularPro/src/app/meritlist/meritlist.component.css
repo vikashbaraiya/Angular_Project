@@ -1,0 +1,8 @@
+body{
+    background: linear-gradient(120deg,#8F7CEC, #55c2d6);
+}
+ th, td{
+    text-align: center;
+    border:1px solid black;
+    border-collapse: collapse;
+}

@@ -1,0 +1,70 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+   
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.0/js/solid.min.js" integrity="sha512-8lu2ZjeEHXD+qkS1UF5wsYQ08dg8yj6dqin/qFeDpeqMebKoLMj9zV92hdooBAYgG4DYhHv5miJ8f/t7NbPHsA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/solid.min.css" integrity="sha512-6/gTF62BJ06BajySRzTm7i8N2ZZ6StspU9uVWDdoBiuuNu5rs1a8VwiJ7skCz2BcvhpipLKfFerXkuzs+npeKA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+</head>
+<body>
+    <div class="container">
+        <h2>Subject Information</h2>
+        <div class="form-container">
+            <form>
+                <div *ngIf="success == true;then SUCC else FAIL"></div>
+                    <ng-template #FAIL><p style="color:red;text-align:center;font-size:x-large;text-shadow:1px 0.6px rgb(255, 0, 0)"> {{ message }} </p></ng-template>
+                    <ng-template #SUCC><p style="color:rgb(70, 240, 70);text-align: center;text-shadow:1px 0.6px rgb(43, 233, 22)"> {{ message }} </p></ng-template>
+            
+            <input type="hidden" name="id" value="{{ form.id }}">
+            <div class="input-name">
+                <i class="fas fa-book icon" style="position:absolute; font-size: 19px;border-right: 1px solid rgb(228, 153, 14); margin:8px 6px ; padding-right:6px"></i>
+                <input type="text" placeholder="Enter Subject Name" name="subjectName" [(ngModel)]="form.subjectName" class="text-name">
+            </div>
+            <div class="input-name">
+                <span style="color: red;margin-left:1px">{{ inputError.subjectName }}</span>
+            </div>
+            <div class="input-name">
+                <i class="fas fa-paragraph icon" style="position:absolute; font-size: 19px;border-right: 1px solid rgb(228, 153, 14); margin:8px 6px ; padding-right:8px"></i>
+                <input type="text" [(ngModel)]="form.subjectDescription" name="subjectDescription" placeholder="Enter Description"  class="text-name">
+            </div>
+            <div class="input-name">
+                <span style="color: red;margin-left:1px">{{ inputError.subjectDescription }}</span>
+            </div>
+            <div class="input-name" style="margin-bottom: 19px;margin-top: -10px">
+                <label for="role_Id">Course Name<span style="color: red;margin-left:2px">*</span></label>
+                <select [(ngModel)]="form.course_ID" class="role" name="course_ID">
+                    <!-- <option value="">Select a Role Name</option> -->
+                    <option *ngFor="let r of preloadData" value="{{r.id}}">{{ r.courseName }}</option>
+                    
+                </select>
+                <span style="color:red;margin-left:5px">{{ inputError.course_ID }}</span>
+
+            </div>
+            
+           
+           
+            <div class="input-button">
+                <div class="row">
+               <button type="submit" class="button" (click)="save()" style="margin-left:125px ;">Save</button>
+               <!-- <span style="margin-right: 20px;">  <a href="" class="button-1" style="text-align:center">reset</a></span> -->
+               <button (click)="reset()" type="reset" class="button-1" style="text-align:center">reset</button>
+               </div>
+            </div>
+            </form>
+            
+
+           
+        </div>
+
+    </div>
+    
+</body>
+
+</html>
